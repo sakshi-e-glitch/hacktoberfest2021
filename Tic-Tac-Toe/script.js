@@ -4,6 +4,11 @@ let gameActive = true;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
+let pointX = 0;
+let pointO = 0;
+let displayx = document.getElementById("pointx");
+let displayo = document.getElementById("pointo");
+
 const winningMessage = () => `Player ${currentPlayer} has won!`;
 const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
@@ -49,6 +54,20 @@ function handleResultValidation() {
 
   if (roundWon) {
     statusDisplay.innerHTML = winningMessage();
+    if(currentPlayer==="X")
+    {
+      pointX++
+      
+    }else
+    {
+       pointO++
+    }
+    console.log(pointX)
+    console.log(pointO)
+  
+    displayx.textContent = "Points (X)= " + pointX;
+    displayo.textContent = "Points (O)= " + pointO;
+     
     gameActive = false;
     return;
   }
@@ -83,6 +102,17 @@ function handleRestartGame() {
   gameState = ["", "", "", "", "", "", "", "", ""];
   statusDisplay.innerHTML = currentPlayerTurn();
   document.querySelectorAll(".cell").forEach((cell) => (cell.innerHTML = ""));
+}
+
+function reset_scores(){
+   pointX = 0;
+   pointO = 0;
+
+   console.log(pointX)
+    console.log(pointO)
+  
+    displayx.textContent = "Points (X)= " + pointX;
+    displayo.textContent = "Points (O)= " + pointO;
 }
 
 document
